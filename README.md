@@ -1,0 +1,1 @@
+# plugins-fr-multi-bank-transfer-payment-gateways-for-woocommerce
