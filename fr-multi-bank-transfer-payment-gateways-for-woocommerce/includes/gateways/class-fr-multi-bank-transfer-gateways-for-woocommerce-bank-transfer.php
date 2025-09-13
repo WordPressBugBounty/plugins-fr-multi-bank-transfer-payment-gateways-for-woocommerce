@@ -277,6 +277,11 @@ class Fr_Multi_Bank_Transfer_Gateways_For_Woocommerce_Bank_Transfer extends WC_G
 	 * @since 1.1.3
 	 */
 	public function get_settings_url() {
+		// Fallback for WooCommerce versions (9.8.5 or below) that do not have the function.
+		if ( ! is_callable( 'Automattic\WooCommerce\Internal\Admin\Settings\Utils::wc_payments_settings_url' ) ) {
+			return admin_url( 'admin.php?page=wc-settings&tab=checkout&section=' . strtolower( $this->id ) );
+		}
+
 		return Automattic\WooCommerce\Internal\Admin\Settings\Utils::wc_payments_settings_url(
 			null,
 			array( 'section' => $this->id )
